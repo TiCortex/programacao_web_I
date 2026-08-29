@@ -1,0 +1,21 @@
+echo OFF
+
+echo --- Alterando usuário de Master para Main ----
+
+echo --- Só é necessário realizar esse comando na primeira vez e só são usados todos os comandos caso vocÊ tenha ativado a opção do READ ME na criação do repositório. Após a primaira vez bastar usar o formato padrão de push ----
+
+git init 
+
+echo --- Git init é o comando que transforma o acesso em master ----
+
+git add .
+git commit -m "Alterações feitas"
+git branch -M main
+git remote add origin (LINK DO REPOSITÓRIO)
+git pull origin main --allow-unrelated-histories
+
+echo --- Após isso abrir uma caixa de dialogo, você deve pressionar ESC e escrever - :wq e apertar enter ----
+
+git config --global user.name "Tiphany Cortez"push -u origin main=
+
+echo --- Fim ---
