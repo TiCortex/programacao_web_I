@@ -1,0 +1,46 @@
+body {
+    background-color: black;
+    font-family: "Martian Mono", monospace;
+    color: white
+}
+
+h1 {
+    font-family: "Martian Mono", monospace;
+    color: red
+}
+
+h2 {
+    font-family: "Martian Mono", monospace;
+    color: red
+}
+
+h3 {
+    font-family: "Martian Mono", monospace;
+    color: red
+}
+a:link {
+    color: yellow;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:visited {
+    color: red;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:hover {
+    color: rgb(78, 0, 0);
+    background-color: transparent;
+}
+a:active {
+    color: yellow;
+    background-color: transparent;
+}
+.div-vazia{
+    height: 30px;
+}
+.img-centro {
+    display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
