@@ -1,0 +1,573 @@
+Microsoft Windows [versão 10.0.22000.2538]
+(c) Microsoft Corporation. Todos os direitos reservados.
+
+C:\Users\CAMARGO>
+C:\Users\CAMARGO>cd c:\xampp\mysql\bin
+
+c:\xampp\mysql\bin>mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [(none)]> create database escola;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> use escola
+Database changed
+MariaDB [escola]> create table aluno (id INT AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(30), bairro VARCHAR(20), idade INT, curso VARCHAR(20), dt_cadastro DATE);
+Query OK, 0 rows affected (0.028 sec)
+
+MariaDB [escola]> desc aluno;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| id          | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nome        | varchar(30) | YES  |     | NULL    |                |
+| bairro      | varchar(20) | YES  |     | NULL    |                |
+| idade       | int(11)     | YES  |     | NULL    |                |
+| curso       | varchar(20) | YES  |     | NULL    |                |
+| dt_cadastro | date        | YES  |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+6 rows in set (0.010 sec)
+
+MariaDB [escola]> select * from aluno;
+Empty set (0.011 sec)
+
+MariaDB [escola]> INSERT INTO aluno (nome, bairro, idade, curso, dt_cadastro) VALUES ("Pedro", "Mooca", 17, "Inglês", "2025/02/17");
+Query OK, 1 row affected (0.007 sec)
+
+MariaDB [escola]> INSERT INTO aluno (nome, bairro, idade, curso, dt_cadastro) VALUES ("Maria", "Penha", 22, "DS", "2018/11/23");
+Query OK, 1 row affected (0.006 sec)
+
+MariaDB [escola]> INSERT INTO aluno (nome, bairro, idade, curso, dt_cadastro) VALUES ("Enzo", "Tatuapé", 18, "Negócios", "2025/06/03");
+Query OK, 1 row affected (0.011 sec)
+
+MariaDB [escola]> INSERT INTO aluno (nome, bairro, idade, curso, dt_cadastro) VALUES ("Valentina", "Carrão", 20, "Medicina", "2026/02/15");
+Query OK, 1 row affected (0.012 sec)
+
+MariaDB [escola]> INSERT INTO aluno (nome, bairro, idade, curso, dt_cadastro) VALUES ("Daniel", "Belem", 23, "Direito", "2024/06/08");
+Query OK, 1 row affected (0.012 sec)
+
+MariaDB [escola]> INSERT INTO aluno (nome, bairro, idade, curso, dt_cadastro) VALUES ("Isabela", "Mooca", 19, "Desing", "2026/06/08");
+Query OK, 1 row affected (0.012 sec)
+
+MariaDB [escola]> SELECT * FROM alunos
+    -> SELECT * FROM aluno
+    ->
+    ->
+    ->
+    -> as
+    -> asca
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT * FROM aluno
+
+
+
+as
+asca' at line 2
+MariaDB [escola]> SELECT * FROM aluno;
++----+-----------+---------+-------+----------+-------------+
+| id | nome      | bairro  | idade | curso    | dt_cadastro |
++----+-----------+---------+-------+----------+-------------+
+|  1 | Pedro     | Mooca   |    17 | Inglês   | 2025-02-17  |
+|  2 | Maria     | Penha   |    22 | DS       | 2018-11-23  |
+|  3 | Enzo      | Tatuapé |    18 | Negócios | 2025-06-03  |
+|  4 | Valentina | Carrão  |    20 | Medicina | 2026-02-15  |
+|  5 | Daniel    | Belem   |    23 | Direito  | 2024-06-08  |
+|  6 | Isabela   | Mooca   |    19 | Desing   | 2026-06-08  |
++----+-----------+---------+-------+----------+-------------+
+6 rows in set (0.001 sec)
+
+MariaDB [escola]> SELECT nome,bairro FROM aluno
+    -> ;
++-----------+---------+
+| nome      | bairro  |
++-----------+---------+
+| Pedro     | Mooca   |
+| Maria     | Penha   |
+| Enzo      | Tatuapé |
+| Valentina | Carrão  |
+| Daniel    | Belem   |
+| Isabela   | Mooca   |
++-----------+---------+
+6 rows in set (0.000 sec)
+
+MariaDB [escola]> SELECT nome AS aluno, bairro AS "Bairro do Aluno" FROM aluno;
++-----------+-----------------+
+| aluno     | Bairro do Aluno |
++-----------+-----------------+
+| Pedro     | Mooca           |
+| Maria     | Penha           |
+| Enzo      | Tatuapé         |
+| Valentina | Carrão          |
+| Daniel    | Belem           |
+| Isabela   | Mooca           |
++-----------+-----------------+
+6 rows in set (0.001 sec)
+
+MariaDB [escola]> SELECT * FROM aluno ORDER BY nome;
++----+-----------+---------+-------+----------+-------------+
+| id | nome      | bairro  | idade | curso    | dt_cadastro |
++----+-----------+---------+-------+----------+-------------+
+|  5 | Daniel    | Belem   |    23 | Direito  | 2024-06-08  |
+|  3 | Enzo      | Tatuapé |    18 | Negócios | 2025-06-03  |
+|  6 | Isabela   | Mooca   |    19 | Desing   | 2026-06-08  |
+|  2 | Maria     | Penha   |    22 | DS       | 2018-11-23  |
+|  1 | Pedro     | Mooca   |    17 | Inglês   | 2025-02-17  |
+|  4 | Valentina | Carrão  |    20 | Medicina | 2026-02-15  |
++----+-----------+---------+-------+----------+-------------+
+6 rows in set (0.001 sec)
+
+MariaDB [escola]> SELECT * FROM aluno ORDER BY nome DESC;
++----+-----------+---------+-------+----------+-------------+
+| id | nome      | bairro  | idade | curso    | dt_cadastro |
++----+-----------+---------+-------+----------+-------------+
+|  4 | Valentina | Carrão  |    20 | Medicina | 2026-02-15  |
+|  1 | Pedro     | Mooca   |    17 | Inglês   | 2025-02-17  |
+|  2 | Maria     | Penha   |    22 | DS       | 2018-11-23  |
+|  6 | Isabela   | Mooca   |    19 | Desing   | 2026-06-08  |
+|  3 | Enzo      | Tatuapé |    18 | Negócios | 2025-06-03  |
+|  5 | Daniel    | Belem   |    23 | Direito  | 2024-06-08  |
++----+-----------+---------+-------+----------+-------------+
+6 rows in set (0.001 sec)
+
+MariaDB [escola]> SELECT * FROM aluno WHERE LOWER(nome) = "Maria";
++----+-------+--------+-------+-------+-------------+
+| id | nome  | bairro | idade | curso | dt_cadastro |
++----+-------+--------+-------+-------+-------------+
+|  2 | Maria | Penha  |    22 | DS    | 2018-11-23  |
++----+-------+--------+-------+-------+-------------+
+1 row in set (0.001 sec)
+
+MariaDB [escola]> INSERT INTO aluno (nome, bairro, idade, curso, dt_cadastro) VALUES ("Fernanda", "Jardins", 20, "Direito", "2025/07/12");
+Query OK, 1 row affected (0.007 sec)
+
+MariaDB [escola]> INSERT INTO aluno (nome, bairro, idade, curso, dt_cadastro) VALUES ("Ana", "Mooca", 21, "Engenharia", "2026/01/15");
+Query OK, 1 row affected (0.006 sec)
+
+MariaDB [escola]> INSERT INTO aluno (nome, bairro, idade, curso, dt_cadastro) VALUES ("Bruno", "Tatuapé", 24, "Administração", "2025/11/02");
+Query OK, 1 row affected (0.012 sec)
+
+MariaDB [escola]> INSERT INTO aluno (nome, bairro, idade, curso, dt_cadastro) VALUES ("Carlos", "Vila Mariana", 19, "Medicina", "2026/03/10");
+Query OK, 1 row affected (0.012 sec)
+
+MariaDB [escola]> INSERT INTO aluno (nome, bairro, idade, curso, dt_cadastro) VALUES ("Daniela", "Pinheiros", 22, "Desing", "2025/08/24");
+Query OK, 1 row affected (0.012 sec)
+
+MariaDB [escola]> INSERT INTO aluno (nome, bairro, idade, curso, dt_cadastro) VALUES ("Eduardo", "Santana", 27, "Psicologia", "2026/02/18");
+Query OK, 1 row affected (0.012 sec)
+
+MariaDB [escola]> INSERT INTO aluno (nome, bairro, idade, curso, dt_cadastro) VALUES ("Gabriel", "Itam Bibi", 23, "Economia", "2026/04/05");
+Query OK, 1 row affected (0.008 sec)
+
+MariaDB [escola]> INSERT INTO aluno (nome, bairro, idade, curso, dt_cadastro) VALUES ("Heloisa", "Moema", 25, "Arquitetura", "2025/12/20");
+Query OK, 1 row affected (0.012 sec)
+
+MariaDB [escola]> INSERT INTO aluno (nome, bairro, idade, curso, dt_cadastro) VALUES ("Igor", "Perdizes", 18, "Jornalismo", "2026/01/30");
+Query OK, 1 row affected (0.014 sec)
+
+MariaDB [escola]> INSERT INTO aluno (nome, bairro, idade, curso, dt_cadastro) VALUES ("Juliana", "Butantã", 22, "Biologia", "2025/09/14");
+Query OK, 1 row affected (0.012 sec)
+
+MariaDB [escola]> SELECT * FROM alune WHERE LOWER(nome) = "Maria";
+ERROR 1146 (42S02): Table 'escola.alune' doesn't exist
+MariaDB [escola]> SELECT * FROM aluno WHERE LOWER(nome) = "Maria";
++----+-------+--------+-------+-------+-------------+
+| id | nome  | bairro | idade | curso | dt_cadastro |
++----+-------+--------+-------+-------+-------------+
+|  2 | Maria | Penha  |    22 | DS    | 2018-11-23  |
++----+-------+--------+-------+-------+-------------+
+1 row in set (0.001 sec)
+
+MariaDB [escola]> SELECT * FROM aluno WHERE id =1;
++----+-------+--------+-------+--------+-------------+
+| id | nome  | bairro | idade | curso  | dt_cadastro |
++----+-------+--------+-------+--------+-------------+
+|  1 | Pedro | Mooca  |    17 | Inglês | 2025-02-17  |
++----+-------+--------+-------+--------+-------------+
+1 row in set (0.000 sec)
+
+MariaDB [escola]> SELECT * FROM aluno WHERE id = 1 AND bairro = "Centro";
+Empty set (0.001 sec)
+
+MariaDB [escola]> SELECT * FROM aluno WHERE bairro != "Belém";
++----+-----------+--------------+-------+---------------+-------------+
+| id | nome      | bairro       | idade | curso         | dt_cadastro |
++----+-----------+--------------+-------+---------------+-------------+
+|  1 | Pedro     | Mooca        |    17 | Inglês        | 2025-02-17  |
+|  2 | Maria     | Penha        |    22 | DS            | 2018-11-23  |
+|  3 | Enzo      | Tatuapé      |    18 | Negócios      | 2025-06-03  |
+|  4 | Valentina | Carrão       |    20 | Medicina      | 2026-02-15  |
+|  6 | Isabela   | Mooca        |    19 | Desing        | 2026-06-08  |
+|  7 | Fernanda  | Jardins      |    20 | Direito       | 2025-07-12  |
+|  8 | Ana       | Mooca        |    21 | Engenharia    | 2026-01-15  |
+|  9 | Bruno     | Tatuapé      |    24 | Administração | 2025-11-02  |
+| 10 | Carlos    | Vila Mariana |    19 | Medicina      | 2026-03-10  |
+| 11 | Daniela   | Pinheiros    |    22 | Desing        | 2025-08-24  |
+| 12 | Eduardo   | Santana      |    27 | Psicologia    | 2026-02-18  |
+| 13 | Gabriel   | Itam Bibi    |    23 | Economia      | 2026-04-05  |
+| 14 | Heloisa   | Moema        |    25 | Arquitetura   | 2025-12-20  |
+| 15 | Igor      | Perdizes     |    18 | Jornalismo    | 2026-01-30  |
+| 16 | Juliana   | Butantã      |    22 | Biologia      | 2025-09-14  |
++----+-----------+--------------+-------+---------------+-------------+
+15 rows in set (0.001 sec)
+
+MariaDB [escola]> CREATE TABLE professor (nome VARCHAR(20), curso VARCHAR(15), celular VARCHAR(14), turno VARCHAR(12));
+Query OK, 0 rows affected (0.036 sec)
+
+MariaDB [escola]> desc ALUNO
+    -> ;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| id          | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nome        | varchar(30) | YES  |     | NULL    |                |
+| bairro      | varchar(20) | YES  |     | NULL    |                |
+| idade       | int(11)     | YES  |     | NULL    |                |
+| curso       | varchar(20) | YES  |     | NULL    |                |
+| dt_cadastro | date        | YES  |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+6 rows in set (0.003 sec)
+
+MariaDB [escola]> DESC PROFESSOR;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| nome    | varchar(20) | YES  |     | NULL    |       |
+| curso   | varchar(15) | YES  |     | NULL    |       |
+| celular | varchar(14) | YES  |     | NULL    |       |
+| turno   | varchar(12) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.010 sec)
+
+MariaDB [escola]> select * from aluno where bairro in("Centro","Belem");
++----+--------+--------+-------+---------+-------------+
+| id | nome   | bairro | idade | curso   | dt_cadastro |
++----+--------+--------+-------+---------+-------------+
+|  5 | Daniel | Belem  |    23 | Direito | 2024-06-08  |
++----+--------+--------+-------+---------+-------------+
+1 row in set (0.001 sec)
+
+MariaDB [escola]> select * from aluno
+    -> ;
++----+-----------+--------------+-------+---------------+-------------+
+| id | nome      | bairro       | idade | curso         | dt_cadastro |
++----+-----------+--------------+-------+---------------+-------------+
+|  1 | Pedro     | Mooca        |    17 | Inglês        | 2025-02-17  |
+|  2 | Maria     | Penha        |    22 | DS            | 2018-11-23  |
+|  3 | Enzo      | Tatuapé      |    18 | Negócios      | 2025-06-03  |
+|  4 | Valentina | Carrão       |    20 | Medicina      | 2026-02-15  |
+|  5 | Daniel    | Belem        |    23 | Direito       | 2024-06-08  |
+|  6 | Isabela   | Mooca        |    19 | Desing        | 2026-06-08  |
+|  7 | Fernanda  | Jardins      |    20 | Direito       | 2025-07-12  |
+|  8 | Ana       | Mooca        |    21 | Engenharia    | 2026-01-15  |
+|  9 | Bruno     | Tatuapé      |    24 | Administração | 2025-11-02  |
+| 10 | Carlos    | Vila Mariana |    19 | Medicina      | 2026-03-10  |
+| 11 | Daniela   | Pinheiros    |    22 | Desing        | 2025-08-24  |
+| 12 | Eduardo   | Santana      |    27 | Psicologia    | 2026-02-18  |
+| 13 | Gabriel   | Itam Bibi    |    23 | Economia      | 2026-04-05  |
+| 14 | Heloisa   | Moema        |    25 | Arquitetura   | 2025-12-20  |
+| 15 | Igor      | Perdizes     |    18 | Jornalismo    | 2026-01-30  |
+| 16 | Juliana   | Butantã      |    22 | Biologia      | 2025-09-14  |
++----+-----------+--------------+-------+---------------+-------------+
+16 rows in set (0.000 sec)
+
+MariaDB [escola]> select * from aluno order by bairro;
++----+-----------+--------------+-------+---------------+-------------+
+| id | nome      | bairro       | idade | curso         | dt_cadastro |
++----+-----------+--------------+-------+---------------+-------------+
+|  5 | Daniel    | Belem        |    23 | Direito       | 2024-06-08  |
+| 16 | Juliana   | Butantã      |    22 | Biologia      | 2025-09-14  |
+|  4 | Valentina | Carrão       |    20 | Medicina      | 2026-02-15  |
+| 13 | Gabriel   | Itam Bibi    |    23 | Economia      | 2026-04-05  |
+|  7 | Fernanda  | Jardins      |    20 | Direito       | 2025-07-12  |
+| 14 | Heloisa   | Moema        |    25 | Arquitetura   | 2025-12-20  |
+|  1 | Pedro     | Mooca        |    17 | Inglês        | 2025-02-17  |
+|  8 | Ana       | Mooca        |    21 | Engenharia    | 2026-01-15  |
+|  6 | Isabela   | Mooca        |    19 | Desing        | 2026-06-08  |
+|  2 | Maria     | Penha        |    22 | DS            | 2018-11-23  |
+| 15 | Igor      | Perdizes     |    18 | Jornalismo    | 2026-01-30  |
+| 11 | Daniela   | Pinheiros    |    22 | Desing        | 2025-08-24  |
+| 12 | Eduardo   | Santana      |    27 | Psicologia    | 2026-02-18  |
+|  3 | Enzo      | Tatuapé      |    18 | Negócios      | 2025-06-03  |
+|  9 | Bruno     | Tatuapé      |    24 | Administração | 2025-11-02  |
+| 10 | Carlos    | Vila Mariana |    19 | Medicina      | 2026-03-10  |
++----+-----------+--------------+-------+---------------+-------------+
+16 rows in set (0.001 sec)
+
+MariaDB [escola]> select * from aluno where bairoo in("Mooca";"Tatuapé");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '"Tatuapé")' at line 1
+MariaDB [escola]> select * from aluno where bairro in("Mooca";"Tatuapé");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '"Tatuapé")' at line 1
+MariaDB [escola]> select * from aluno where bairoo in("Mooca","Tatuapé");
+ERROR 1054 (42S22): Unknown column 'bairoo' in 'where clause'
+MariaDB [escola]> SELECT * FROM ALUNO WHERE BAIRRO IN("MOOCA","TATUAPÉ");
++----+---------+---------+-------+---------------+-------------+
+| id | nome    | bairro  | idade | curso         | dt_cadastro |
++----+---------+---------+-------+---------------+-------------+
+|  1 | Pedro   | Mooca   |    17 | Inglês        | 2025-02-17  |
+|  3 | Enzo    | Tatuapé |    18 | Negócios      | 2025-06-03  |
+|  6 | Isabela | Mooca   |    19 | Desing        | 2026-06-08  |
+|  8 | Ana     | Mooca   |    21 | Engenharia    | 2026-01-15  |
+|  9 | Bruno   | Tatuapé |    24 | Administração | 2025-11-02  |
++----+---------+---------+-------+---------------+-------------+
+5 rows in set (0.001 sec)
+
+MariaDB [escola]> SELECT * FROM ALUNO WHERE BAIRRO = "MOOCA" OR BAIRRO = "TATUAPÉ";
++----+---------+---------+-------+---------------+-------------+
+| id | nome    | bairro  | idade | curso         | dt_cadastro |
++----+---------+---------+-------+---------------+-------------+
+|  1 | Pedro   | Mooca   |    17 | Inglês        | 2025-02-17  |
+|  3 | Enzo    | Tatuapé |    18 | Negócios      | 2025-06-03  |
+|  6 | Isabela | Mooca   |    19 | Desing        | 2026-06-08  |
+|  8 | Ana     | Mooca   |    21 | Engenharia    | 2026-01-15  |
+|  9 | Bruno   | Tatuapé |    24 | Administração | 2025-11-02  |
++----+---------+---------+-------+---------------+-------------+
+5 rows in set (0.001 sec)
+
+MariaDB [escola]> SELECT * FROM ALUNO WHERE DT_CADASTRO BETWEEN "2021/02/10" AND "2025/08/20";
++----+----------+---------+-------+----------+-------------+
+| id | nome     | bairro  | idade | curso    | dt_cadastro |
++----+----------+---------+-------+----------+-------------+
+|  1 | Pedro    | Mooca   |    17 | Inglês   | 2025-02-17  |
+|  3 | Enzo     | Tatuapé |    18 | Negócios | 2025-06-03  |
+|  5 | Daniel   | Belem   |    23 | Direito  | 2024-06-08  |
+|  7 | Fernanda | Jardins |    20 | Direito  | 2025-07-12  |
++----+----------+---------+-------+----------+-------------+
+4 rows in set (0.001 sec)
+
+MariaDB [escola]> SELECT NOME, BAIRRO FROM ALUNO WHERE DT_CADASTRO BETWEEN "2021/02/10" AND "2025/10/30"
+    -> ;
++----------+-----------+
+| NOME     | BAIRRO    |
++----------+-----------+
+| Pedro    | Mooca     |
+| Enzo     | Tatuapé   |
+| Daniel   | Belem     |
+| Fernanda | Jardins   |
+| Daniela  | Pinheiros |
+| Juliana  | Butantã   |
++----------+-----------+
+6 rows in set (0.001 sec)
+
+MariaDB [escola]> SELECT * FROM ALUNO WHERE NOME LIKE "Ma%";
++----+-------+--------+-------+-------+-------------+
+| id | nome  | bairro | idade | curso | dt_cadastro |
++----+-------+--------+-------+-------+-------------+
+|  2 | Maria | Penha  |    22 | DS    | 2018-11-23  |
++----+-------+--------+-------+-------+-------------+
+1 row in set (0.001 sec)
+
+MariaDB [escola]> SELECT * FROM ALUNO WHERE NOME LIKE "Da%";
++----+---------+-----------+-------+---------+-------------+
+| id | nome    | bairro    | idade | curso   | dt_cadastro |
++----+---------+-----------+-------+---------+-------------+
+|  5 | Daniel  | Belem     |    23 | Direito | 2024-06-08  |
+| 11 | Daniela | Pinheiros |    22 | Desing  | 2025-08-24  |
++----+---------+-----------+-------+---------+-------------+
+2 rows in set (0.001 sec)
+
+MariaDB [escola]> SELECT * FROM ALUNO WHERE NOME LIKE "%RIA%";
++----+-------+--------+-------+-------+-------------+
+| id | nome  | bairro | idade | curso | dt_cadastro |
++----+-------+--------+-------+-------+-------------+
+|  2 | Maria | Penha  |    22 | DS    | 2018-11-23  |
++----+-------+--------+-------+-------+-------------+
+1 row in set (0.001 sec)
+
+MariaDB [escola]> SELECT * FROM ALUNO WHERE NOME LIKE "%ELA%";
++----+---------+-----------+-------+--------+-------------+
+| id | nome    | bairro    | idade | curso  | dt_cadastro |
++----+---------+-----------+-------+--------+-------------+
+|  6 | Isabela | Mooca     |    19 | Desing | 2026-06-08  |
+| 11 | Daniela | Pinheiros |    22 | Desing | 2025-08-24  |
++----+---------+-----------+-------+--------+-------------+
+2 rows in set (0.001 sec)
+
+MariaDB [escola]> SELECT * FROM ALUNO WHERE NOME LIKE "%EL%";
++----+---------+-----------+-------+-------------+-------------+
+| id | nome    | bairro    | idade | curso       | dt_cadastro |
++----+---------+-----------+-------+-------------+-------------+
+|  5 | Daniel  | Belem     |    23 | Direito     | 2024-06-08  |
+|  6 | Isabela | Mooca     |    19 | Desing      | 2026-06-08  |
+| 11 | Daniela | Pinheiros |    22 | Desing      | 2025-08-24  |
+| 13 | Gabriel | Itam Bibi |    23 | Economia    | 2026-04-05  |
+| 14 | Heloisa | Moema     |    25 | Arquitetura | 2025-12-20  |
++----+---------+-----------+-------+-------------+-------------+
+5 rows in set (0.001 sec)
+
+MariaDB [escola]> SELECT * FROM ALUNO WHERE NOME LIKE "%A";
++----+-----------+-----------+-------+-------------+-------------+
+| id | nome      | bairro    | idade | curso       | dt_cadastro |
++----+-----------+-----------+-------+-------------+-------------+
+|  2 | Maria     | Penha     |    22 | DS          | 2018-11-23  |
+|  4 | Valentina | Carrão    |    20 | Medicina    | 2026-02-15  |
+|  6 | Isabela   | Mooca     |    19 | Desing      | 2026-06-08  |
+|  7 | Fernanda  | Jardins   |    20 | Direito     | 2025-07-12  |
+|  8 | Ana       | Mooca     |    21 | Engenharia  | 2026-01-15  |
+| 11 | Daniela   | Pinheiros |    22 | Desing      | 2025-08-24  |
+| 14 | Heloisa   | Moema     |    25 | Arquitetura | 2025-12-20  |
+| 16 | Juliana   | Butantã   |    22 | Biologia    | 2025-09-14  |
++----+-----------+-----------+-------+-------------+-------------+
+8 rows in set (0.001 sec)
+
+MariaDB [escola]> UPDATE ALUNO SET BAIRRO="CENTRO" WHERE ID =1;
+Query OK, 1 row affected (0.012 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [escola]> SELECT * FROM ALUNO;
++----+-----------+--------------+-------+---------------+-------------+
+| id | nome      | bairro       | idade | curso         | dt_cadastro |
++----+-----------+--------------+-------+---------------+-------------+
+|  1 | Pedro     | CENTRO       |    17 | Inglês        | 2025-02-17  |
+|  2 | Maria     | Penha        |    22 | DS            | 2018-11-23  |
+|  3 | Enzo      | Tatuapé      |    18 | Negócios      | 2025-06-03  |
+|  4 | Valentina | Carrão       |    20 | Medicina      | 2026-02-15  |
+|  5 | Daniel    | Belem        |    23 | Direito       | 2024-06-08  |
+|  6 | Isabela   | Mooca        |    19 | Desing        | 2026-06-08  |
+|  7 | Fernanda  | Jardins      |    20 | Direito       | 2025-07-12  |
+|  8 | Ana       | Mooca        |    21 | Engenharia    | 2026-01-15  |
+|  9 | Bruno     | Tatuapé      |    24 | Administração | 2025-11-02  |
+| 10 | Carlos    | Vila Mariana |    19 | Medicina      | 2026-03-10  |
+| 11 | Daniela   | Pinheiros    |    22 | Desing        | 2025-08-24  |
+| 12 | Eduardo   | Santana      |    27 | Psicologia    | 2026-02-18  |
+| 13 | Gabriel   | Itam Bibi    |    23 | Economia      | 2026-04-05  |
+| 14 | Heloisa   | Moema        |    25 | Arquitetura   | 2025-12-20  |
+| 15 | Igor      | Perdizes     |    18 | Jornalismo    | 2026-01-30  |
+| 16 | Juliana   | Butantã      |    22 | Biologia      | 2025-09-14  |
++----+-----------+--------------+-------+---------------+-------------+
+16 rows in set (0.000 sec)
+
+MariaDB [escola]> UPDATE ALUNO SET BAIRRO = "Centro", nome = "Paulo" WHERE ID = 1;
+Query OK, 1 row affected (0.013 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [escola]> SELECT * FROM ALUNO;
++----+-----------+--------------+-------+---------------+-------------+
+| id | nome      | bairro       | idade | curso         | dt_cadastro |
++----+-----------+--------------+-------+---------------+-------------+
+|  1 | Paulo     | Centro       |    17 | Inglês        | 2025-02-17  |
+|  2 | Maria     | Penha        |    22 | DS            | 2018-11-23  |
+|  3 | Enzo      | Tatuapé      |    18 | Negócios      | 2025-06-03  |
+|  4 | Valentina | Carrão       |    20 | Medicina      | 2026-02-15  |
+|  5 | Daniel    | Belem        |    23 | Direito       | 2024-06-08  |
+|  6 | Isabela   | Mooca        |    19 | Desing        | 2026-06-08  |
+|  7 | Fernanda  | Jardins      |    20 | Direito       | 2025-07-12  |
+|  8 | Ana       | Mooca        |    21 | Engenharia    | 2026-01-15  |
+|  9 | Bruno     | Tatuapé      |    24 | Administração | 2025-11-02  |
+| 10 | Carlos    | Vila Mariana |    19 | Medicina      | 2026-03-10  |
+| 11 | Daniela   | Pinheiros    |    22 | Desing        | 2025-08-24  |
+| 12 | Eduardo   | Santana      |    27 | Psicologia    | 2026-02-18  |
+| 13 | Gabriel   | Itam Bibi    |    23 | Economia      | 2026-04-05  |
+| 14 | Heloisa   | Moema        |    25 | Arquitetura   | 2025-12-20  |
+| 15 | Igor      | Perdizes     |    18 | Jornalismo    | 2026-01-30  |
+| 16 | Juliana   | Butantã      |    22 | Biologia      | 2025-09-14  |
++----+-----------+--------------+-------+---------------+-------------+
+16 rows in set (0.001 sec)
+
+MariaDB [escola]> DELET FROM ALUNO WHERE ID =1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'DELET FROM ALUNO WHERE ID =1' at line 1
+MariaDB [escola]> DELETE FROM ALUNOS WHERE ID = 1;
+ERROR 1146 (42S02): Table 'escola.alunos' doesn't exist
+MariaDB [escola]> DELETE FROM ALUNO WHERE ID = 1;
+Query OK, 1 row affected (0.012 sec)
+
+MariaDB [escola]> SELECT * FROM ALUNO
+    -> ;
++----+-----------+--------------+-------+---------------+-------------+
+| id | nome      | bairro       | idade | curso         | dt_cadastro |
++----+-----------+--------------+-------+---------------+-------------+
+|  2 | Maria     | Penha        |    22 | DS            | 2018-11-23  |
+|  3 | Enzo      | Tatuapé      |    18 | Negócios      | 2025-06-03  |
+|  4 | Valentina | Carrão       |    20 | Medicina      | 2026-02-15  |
+|  5 | Daniel    | Belem        |    23 | Direito       | 2024-06-08  |
+|  6 | Isabela   | Mooca        |    19 | Desing        | 2026-06-08  |
+|  7 | Fernanda  | Jardins      |    20 | Direito       | 2025-07-12  |
+|  8 | Ana       | Mooca        |    21 | Engenharia    | 2026-01-15  |
+|  9 | Bruno     | Tatuapé      |    24 | Administração | 2025-11-02  |
+| 10 | Carlos    | Vila Mariana |    19 | Medicina      | 2026-03-10  |
+| 11 | Daniela   | Pinheiros    |    22 | Desing        | 2025-08-24  |
+| 12 | Eduardo   | Santana      |    27 | Psicologia    | 2026-02-18  |
+| 13 | Gabriel   | Itam Bibi    |    23 | Economia      | 2026-04-05  |
+| 14 | Heloisa   | Moema        |    25 | Arquitetura   | 2025-12-20  |
+| 15 | Igor      | Perdizes     |    18 | Jornalismo    | 2026-01-30  |
+| 16 | Juliana   | Butantã      |    22 | Biologia      | 2025-09-14  |
++----+-----------+--------------+-------+---------------+-------------+
+15 rows in set (0.001 sec)
+
+MariaDB [escola]> ALTER TABLE
+    -> ALTER TABLE ALUNO ADD COLUNA2 VARCHAR(2);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ALTER TABLE ALUNO ADD COLUNA2 VARCHAR(2)' at line 2
+MariaDB [escola]> ALTER TABLE ALUNO ADD COLUNA2 VARCHAR(2);
+Query OK, 0 rows affected (0.017 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [escola]> SLECT * FROM ALUNO;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SLECT * FROM ALUNO' at line 1
+MariaDB [escola]> SELECT * FROM ALUNO;
++----+-----------+--------------+-------+---------------+-------------+---------+
+| id | nome      | bairro       | idade | curso         | dt_cadastro | COLUNA2 |
++----+-----------+--------------+-------+---------------+-------------+---------+
+|  2 | Maria     | Penha        |    22 | DS            | 2018-11-23  | NULL    |
+|  3 | Enzo      | Tatuapé      |    18 | Negócios      | 2025-06-03  | NULL    |
+|  4 | Valentina | Carrão       |    20 | Medicina      | 2026-02-15  | NULL    |
+|  5 | Daniel    | Belem        |    23 | Direito       | 2024-06-08  | NULL    |
+|  6 | Isabela   | Mooca        |    19 | Desing        | 2026-06-08  | NULL    |
+|  7 | Fernanda  | Jardins      |    20 | Direito       | 2025-07-12  | NULL    |
+|  8 | Ana       | Mooca        |    21 | Engenharia    | 2026-01-15  | NULL    |
+|  9 | Bruno     | Tatuapé      |    24 | Administração | 2025-11-02  | NULL    |
+| 10 | Carlos    | Vila Mariana |    19 | Medicina      | 2026-03-10  | NULL    |
+| 11 | Daniela   | Pinheiros    |    22 | Desing        | 2025-08-24  | NULL    |
+| 12 | Eduardo   | Santana      |    27 | Psicologia    | 2026-02-18  | NULL    |
+| 13 | Gabriel   | Itam Bibi    |    23 | Economia      | 2026-04-05  | NULL    |
+| 14 | Heloisa   | Moema        |    25 | Arquitetura   | 2025-12-20  | NULL    |
+| 15 | Igor      | Perdizes     |    18 | Jornalismo    | 2026-01-30  | NULL    |
+| 16 | Juliana   | Butantã      |    22 | Biologia      | 2025-09-14  | NULL    |
++----+-----------+--------------+-------+---------------+-------------+---------+
+15 rows in set (0.001 sec)
+
+MariaDB [escola]> ALTER TABLE ALUNO DROP COLUMN COLUNA2;
+Query OK, 0 rows affected (0.021 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [escola]> SELECT * FROM ALUNO;
++----+-----------+--------------+-------+---------------+-------------+
+| id | nome      | bairro       | idade | curso         | dt_cadastro |
++----+-----------+--------------+-------+---------------+-------------+
+|  2 | Maria     | Penha        |    22 | DS            | 2018-11-23  |
+|  3 | Enzo      | Tatuapé      |    18 | Negócios      | 2025-06-03  |
+|  4 | Valentina | Carrão       |    20 | Medicina      | 2026-02-15  |
+|  5 | Daniel    | Belem        |    23 | Direito       | 2024-06-08  |
+|  6 | Isabela   | Mooca        |    19 | Desing        | 2026-06-08  |
+|  7 | Fernanda  | Jardins      |    20 | Direito       | 2025-07-12  |
+|  8 | Ana       | Mooca        |    21 | Engenharia    | 2026-01-15  |
+|  9 | Bruno     | Tatuapé      |    24 | Administração | 2025-11-02  |
+| 10 | Carlos    | Vila Mariana |    19 | Medicina      | 2026-03-10  |
+| 11 | Daniela   | Pinheiros    |    22 | Desing        | 2025-08-24  |
+| 12 | Eduardo   | Santana      |    27 | Psicologia    | 2026-02-18  |
+| 13 | Gabriel   | Itam Bibi    |    23 | Economia      | 2026-04-05  |
+| 14 | Heloisa   | Moema        |    25 | Arquitetura   | 2025-12-20  |
+| 15 | Igor      | Perdizes     |    18 | Jornalismo    | 2026-01-30  |
+| 16 | Juliana   | Butantã      |    22 | Biologia      | 2025-09-14  |
++----+-----------+--------------+-------+---------------+-------------+
+15 rows in set (0.001 sec)
+
+MariaDB [escola]>
