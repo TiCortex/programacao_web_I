@@ -1,39 +1,45 @@
 body {
     background-color: black;
     font-family: "Martian Mono", monospace;
-    color: white
+    color: white;
+    text-align: justify;
 }
 
+p{
+    font-family: "Martian Mono", monospace;
+    color: white;
+    text-align: justify;
+}
 h1 {
     font-family: "Martian Mono", monospace;
-    color: red
+    color: #DB2422
 }
 
 h2 {
     font-family: "Martian Mono", monospace;
-    color: red
+    color: #DB2422
 }
 
 h3 {
     font-family: "Martian Mono", monospace;
-    color: red
+    color: #DB2422
 }
 a:link {
-    color: yellow;
+    color: #dbd5d5;
     background-color: transparent;
     text-decoration: none;
 }
 a:visited {
-    color: red;
+    color: #DB2422;
     background-color: transparent;
     text-decoration: none;
 }
 a:hover {
-    color: rgb(78, 0, 0);
+    color: #DB2422;
     background-color: transparent;
 }
 a:active {
-    color: yellow;
+    color: #DB2422;
     background-color: transparent;
 }
 .div-vazia{
@@ -41,6 +47,11 @@ a:active {
 }
 .img-centro {
     display: block;
-  margin: 0 auto;
-  max-width: 100%;
+    margin: 0 auto;
+    max-width: 100%;
+}
+.container{
+    display: flex;
+    align-items: center;
+    gap: 30px;
 }
