@@ -54,4 +54,16 @@ a:active {
     display: flex;
     align-items: center;
     gap: 30px;
+    margin: 0 auto;
+}
+table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 3dvh
+}
+th, td {
+        padding: 10px;
+        text-align: left;
+        border: none; 
+        border-bottom: 1px solid white; 
 }
